@@ -1,0 +1,42 @@
+<%= render "shared/error", obj:@room %>
+<div class="user-form">
+  <div class="container">
+    <%= form_with model: @room, :url => {:action => :update} do |form| %>
+      <div class="acount-form">
+        <div class="form-title">
+          <h3>ルーム編集</h3>
+        </div>
+        <div class="form-menu">
+          <div class="room-logo">
+            <%= image_tag @room.image.url %>
+          </div>
+          <div class="form-list">
+            <p>ルームフォト</p>
+            <%= form.file_field :image %>
+          </div>
+          <div class="form-list">
+            <p>ルーム名</p>
+            <%= form.text_field :name %>
+          </div>
+          <div class="form-list">
+            <p>ルーム紹介</p>
+            <%= form.text_area :introduce %>
+          </div>
+          <div class="form-list">
+            <p>宿泊費(一泊)</p>
+            <%= form.text_field :price %>
+          </div>
+          <div class="form-list">
+            <p>住所</p>
+            <%= form.text_field :address %>
+          </div>
+
+        <div class="link-menu">
+          <%= form.submit "更新する", class:"link-item" %>
+          <%= link_to "削除する", "/rooms/#{@room.id}", method: :delete, class:"room-del" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

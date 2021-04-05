@@ -1,0 +1,43 @@
+<div class="user-form">
+  <div class="container">
+    <div class="acount-menu">
+      <div class="user-menu">
+        <ul>
+          <li>
+            <%= link_to "アカウント", "/users/#{@current_user.id}"%>
+          </li>
+          <li>
+            <%= link_to "プロフィール", "/profile/#{@current_user.id}" %>
+          </li>
+          <li>
+            <%= link_to "予約履歴", "/books" %>
+          </li>
+          <li>
+            <%= link_to "提供物件", "/users", class:"select-list" %>
+          </li>
+          <li>
+            <%= link_to "ルームを登録する", "/rooms/new" %>
+          </li>
+        </ul>
+      </div>
+      <div class="provide-list">
+        <% @rooms.each do |room| %>
+        <div class="provide-contents">
+          <%= link_to "/rooms/#{room.id}" do %>
+        <div class="room-img">
+          <%= image_tag room.image.url %>
+        </div>
+        <div class="room-text">
+          <h4><%= room.name %></h4>
+          <p><%= room.address %></p>
+        </div>
+        <div class="room-price">
+          <p>¥<%= room.price %></p>
+        </div>
+        <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

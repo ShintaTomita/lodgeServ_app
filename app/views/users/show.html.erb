@@ -1,0 +1,46 @@
+<%= render "shared/error", obj:@user %>
+<div class="user-form">
+  <div class="container">
+    <%= form_with model: @user do |form| %>
+    <div class="acount-menu">
+      <div class="user-menu">
+        <ul>
+          <li>
+            <%= link_to "アカウント", "/users/#{@user.id}", class:"select-list"%>
+          </li>
+          <li>
+            <%= link_to "プロフィール", "/profile/#{@user.id}" %>
+          </li>
+          <li>
+            <%= link_to "予約履歴", "/books" %>
+          </li>
+          <li>
+            <%= link_to "提供物件", "/users" %>
+          </li>
+          <li>
+            <%= link_to "ルームを登録する", "/rooms/new" %>
+          </li>
+        </ul>
+      </div>
+      <div class="acount-form">
+        <div class="form-title">
+          <h3>アカウント</h3>
+        </div>
+        <div class="form-menu">
+          <div class="user-list">
+            <p>メールアドレス</p>
+            <%= @user.email %>
+          </div>
+          <div class="user-list">
+            <p>パスワード</p>
+            <P>***********</P>
+          </div>
+        </div>
+        <div class="link-menu">
+          <%= link_to "編集", "/users/#{@user.id}/edit", class:"link-item"%>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
