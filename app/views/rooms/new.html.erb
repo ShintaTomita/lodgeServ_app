@@ -1,0 +1,73 @@
+<%= render "shared/error", obj:@room %>
+<div class="user-form">
+  <div class="container">
+    <%= form_with model: @room, :url => {:action => :create}  do |form| %>
+    <div class="acount-menu">
+      <div class="user-menu">
+        <ul>
+          <li>
+            <%= link_to "アカウント", "/users/#{@current_user.id}" %>
+          </li>
+          <li>
+            <%= link_to "プロフィール", "/profile/#{@current_user.id}" %>
+          </li>
+          <li>
+            <%= link_to "予約履歴", "/books" %>
+          </li>
+          <li>
+            <%= link_to "提供物件", "/users" %>
+          </li>
+          <li>
+            <%= link_to "ルームを登録する", "/rooms/new", class:"select-list" %>
+          </li>
+        </ul>
+      </div>
+      <%= form.hidden_field :user_id, value:@current_user %>
+      <div class="acount-form">
+        <div class="form-title">
+          <h3>ルーム登録</h3>
+        </div>
+        <div class="form-menu">
+          <div class="form-list">
+            <div class="list-title">
+              <p>ルームフォト</p>
+              <p class="marking">必須</p>
+            </div>
+            <%= form.file_field :image %>
+          </div>
+          <div class="form-list">
+            <div class="list-title">
+              <p>ルーム名</p>
+              <p class="marking">必須</p>
+            </div>
+            <%= form.text_field :name, :placeholder => "お部屋の名前を入力してください" %>
+          </div>
+          <div class="form-list">
+          <div class="list-title">
+            <p>ルーム紹介</p>
+            <p class="marking">必須</p>
+          </div>
+            <%= form.text_area :introduce, :placeholder => "お部屋の紹介を入力してください" %>
+          </div>
+          <div class="form-list">
+          <div class="list-title">
+            <p>宿泊費(一泊)</p>
+            <p class="marking">必須</p>
+          </div>
+            <%= form.text_field :price, :placeholder => "宿泊費を入力してください" %>
+          </div>
+          <div class="form-list">
+            <div class="list-title">
+              <p>住所</p>
+              <p class="marking">必須</p>
+            </div>
+            <%= form.text_field :address, :placeholder => "ご住所を入力してください" %>
+          </div>
+          <div class="room-link">
+            <%= form.submit "新しくお部屋を登録する", class:"link-item"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

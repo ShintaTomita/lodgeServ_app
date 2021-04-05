@@ -1,0 +1,39 @@
+
+<div class="user-form">
+  <div class="container">
+    <%= form_for(:session, url: login_path) do |f| %>
+    <div class="login-form">
+      <div class="login-title">
+        <h3>ログイン</h3>
+      </div>
+      <div class="login-menu">
+        <div class="login-list">
+          <div class="list-title">
+            <p>メールアドレス</p>
+            <p class="marking">必須</p>
+          </div>
+          <%= f.text_field :email, :placeholder => "メールアドレスを入力してください" %>
+        </div>
+        <div class="login-list">
+          <div class="list-title">
+            <p>パスワード</p>
+            <p class="marking">必須</p>
+          </div>
+          <%= f.password_field :password, :placeholder => "パスワードを入力してください" %>
+        </div>
+        <div class="login-list">
+          <div class="list-title">
+            <p>パスワード</p>
+            <p class="marking">必須</p>
+          </div>
+          <%= f.password_field :password_confirmation, :placeholder => "同じパスワードを再入力してください" %>
+        </div>
+      </div>
+      <div class="login-link">
+        <%= f.submit "ログインする", class:"link-button" %>
+        <%= link_to "まだ登録していない方はこちら", "/users/new" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

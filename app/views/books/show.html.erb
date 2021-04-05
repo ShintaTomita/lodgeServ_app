@@ -1,0 +1,56 @@
+<div class="user-form">
+  <div class="container">
+  <%= form_with model: @book, :url => {:action => :new} do |form| %>
+    <div class="reserve">
+      <div class="reserve-title">
+        <h3>ご予約詳細</h3>
+      </div>
+      <div class="reserve-items">
+        <div class="reserve-list">
+          <p>チェックイン</p>
+          <%= @book.check_in %>
+        </div>
+        <div class="reserve-list">
+          <p>チェックアウト</p>
+          <%= @book.check_out %>
+        </div>
+        <div class="reserve-list">
+          <p>人数</p>
+          <%= @book.customers %>名様
+        </div>
+        <div class="reserve-list">
+          <p>宿泊費(税込)</p>
+          ¥<%= @book.total_price %>
+        </div>
+      </div>
+      <div class="show-menu">
+        <div class="room-logo">
+            <%= image_tag @room.image.url %>
+        </div>
+        <div class="show-contents">
+          <div class="show-list">
+            <p>ルーム名:</p>
+            <%= @room.name %>
+          </div>
+          <div class="show-list">
+            <p>ルーム紹介:</p>
+            <%= @room.introduce %>
+          </div>
+          <div class="show-list">
+            <p>宿泊費(一泊):</p>
+            ¥<%= @room.price%>
+          </div>
+          <div class="show-list">
+            <p>住所:</p>
+            <%= @room.address %>
+          </div>
+        </div>
+      </div>
+      <div class="reserve-links">
+          <%= link_to "ご予約を変更する", "/books/#{@book.id}/edit", class:"link-item" %>
+          <%= link_to "キャンセルする", "/books/#{@book.id}", method: :delete, class:"link-item" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

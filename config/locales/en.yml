@@ -28,6 +28,32 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      room: ルーム
+      book: 予約
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        introduce: 自己紹介
+        password: パスワード
+        image: プロフィール画像
+      room:
+        name: ルーム名
+        price: 宿泊費
+        address: 住所
+        image: ルーム画像
+        introduce: ルーム紹介
+      book:
+        check_in: チェックイン
+        check_out: チェックアウト
+        customers: 宿泊人数
+        total_price: 合計金額
+        
+
 
 en:
   hello: "Hello world"

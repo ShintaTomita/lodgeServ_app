@@ -1,0 +1,87 @@
+<%= render "shared/error", obj:@book %>
+<div class="user-form">
+  <div class="container">
+    <%= form_with model: @book, :url => {:action => :create} do |form| %>
+      <div class="reserve-form">
+        <div class="form-title">
+          <h3>ご予約フォーム</h3>
+        </div>
+        <div class="reserve-contents">
+          <div class="login-menu">
+            <div class="login-list">
+              <div class="list-title">
+                <p>チェックイン</p>
+                <p class="marking">必須</p>
+              </div>
+              <%= form.date_field :check_in, id: "check-st" %>
+            </div>
+            <div class="login-list">
+              <div class="list-title">
+                <p>チェックアウト</p>
+                <p class="marking">必須</p>
+              </div>
+              <%= form.date_field :check_out, id: "check-en" %>
+            </div>
+            <div class="login-list">
+              <div class="list-title">
+                <p>人数</p>
+                <p class="marking">必須</p>
+              </div>
+              <%= form.number_field :customers, id: "customer", :placeholder => "人数を入力してください" %>
+            </div>
+            <div class="login-list">
+              <div class="list-title">
+                <p>お支払い金額(税込)</p>
+              </div>
+              <%= form.text_field :total_price, id:'result' %>
+            </div>
+          </div>
+
+          <%= form.hidden_field :room_id, value: "#{@room.id}" %>
+          <%= form.hidden_field :user_id, value: "#{@current_user.id}" %>
+        <div class="show-menu">
+          <div class="room-logo">
+              <%= image_tag @room.image.url %>
+          </div>
+          <div class="show-contents">
+            <div class="show-list">
+              <p>ルーム名:</p>
+              <%= @room.name %>
+            </div>
+            <div class="show-list">
+              <p>ルーム紹介:</p>
+              <%= @room.introduce %>
+            </div>
+            <div class="show-list">
+              <p>宿泊費(一泊):</p>
+              ¥<%= @room.price%>
+            </div>
+            <div class="show-list">
+              <p>住所:</p>
+              <%= @room.address %>
+            </div>
+          </div>
+        </div>
+        <div class="reserve-link">
+          <%= form.submit "ご予約を確定する", class:"link-item" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<script>
+  $('#customer').change(function(){
+    var price = '<%= @room.price%>';
+    var start = $('#check-st').val();
+    var start = new Date(start);
+    var start = start.getTime();
+    var end = $('#check-en').val();
+    var end = new Date(end);
+    var end = end.getTime();
+    var customer = $('#customer').val();
+    var num = (end - start) /86400000;
+    var result = Math.round((num * customer) * price * 1.1);
+    $('#result').val(result);
+  })
+</script>

@@ -1,0 +1,22 @@
+<div class="rooms-form">
+  <div class="container">
+    <div class="rooms-list">
+    <% @rooms.each do |room| %>
+      <div class="room-contents">
+        <%= link_to "/rooms/#{room.id}" do %>
+        <div class="room-img">
+          <%= image_tag room.image.url %>
+        </div>
+        <div class="room-text">
+          <h4><%= room.name %></h4>
+          <p><%= room.address %></p>
+        </div>
+        <div class="room-price">
+          <p>¥<%= room.price %></p>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="user-form">
+  <div class="container">
+    <%= form_with model: @room, :url => {:action => :edit} do |form| %>
+      <div class="acount-form">
+        <div class="form-title">
+          <h3>ルーム詳細</h3>
+        </div>
+        <div class="show-menu">
+          <div class="room-logo">
+            <% if @room.image? %>
+              <%= image_tag @room.image.url %>
+            <% else %>
+              <%= image_tag "default.user.image.png" %>
+            <% end %>
+          </div>
+          <div class="show-contents">
+            <div class="show-list">
+              <p>ルーム名:</p>
+              <%= @room.name %>
+            </div>
+            <div class="show-list">
+              <p>ルーム紹介:</p>
+              <%= @room.introduce %>
+            </div>
+            <div class="show-list">
+              <p>宿泊費(一泊):</p>
+              ¥<%= @room.price %>
+            </div>
+            <div class="show-list">
+              <p>住所:</p>
+              <%= @room.address %>
+            </div>
+          </div>
+        </div>
+        <div class="form-title">
+          <h3>提供者</h3>
+        </div>
+        <div class="provider">
+          <div class="provider-logo">
+            <%= image_tag @user.image.url %>
+          </div>
+          <div class="provider-contents">
+            <div class="show-list">
+              <p>名前:</p>
+              <P id="text"><%= @user.name %></p>
+            </div>
+            <div class="show-list">
+              <p>email:</p>
+              <P id="text"><%= @user.email %></p>
+            </div>
+            <div class="show-list">
+              <p>自己紹介:</p>
+              <P id="text"><%= @user.introduce %></p>
+            </div>
+          </div>
+        </div>
+        <div class="reserve-link">
+          <%= link_to "ご予約をする", new_book_path(id: @room.id),class:"link-item" %>
+        </div>
+        <div class="show-link">
+          <% if @room.user_id == @current_user.id %>
+            <%= link_to "編集する", "/rooms/#{@room.id}/edit", class:"link-item" %>
+          <% end %>
+        </div>
+
+    </div>
+    <% end %>
+  </div>
+</div>

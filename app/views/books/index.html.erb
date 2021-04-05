@@ -1,0 +1,58 @@
+<div class="user-form">
+  <div class="container">
+    <div class="acount-menu">
+      <div class="user-menu">
+        <ul>
+          <li>
+            <%= link_to "アカウント", "/users/#{@current_user.id}" %>
+          </li>
+          <li>
+            <%= link_to "プロフィール", "/profile/#{@current_user.id}" %>
+          </li>
+          <li>
+            <%= link_to "予約履歴", "/books", class:"select-list" %>
+          </li>
+          <li>
+            <%= link_to "提供物件", "/users" %>
+          </li>
+          <li>
+            <%= link_to "ルームを登録する", "/rooms/new" %>
+          </li>
+        </ul>
+      </div>
+      <div class="acount-form">
+        <div class="form-title">
+          <h3>宿泊履歴</h3>
+        </div>
+        <div class="books-menu">
+          <% @books.each do |book| %>
+          <div class="books">
+            <%= link_to "/books/#{book.id}" do %>
+            <div class="date">
+              <%= book.check_in.to_s(:datetime_jp) %>
+            </div>
+            <div class="room-img">
+              <%= image_tag book.room.image.url %>
+            </div>
+            <div class="book-contents">
+              <div class="book-list">
+                <p>住所: </p>
+                <%= book.room.address %>
+              </div>
+              <div class="book-list">
+                <p>人数: </p>
+                <%= book.customers %>名様
+              </div>
+              <div class="book-list">
+                <p>宿泊費: </p>
+                ¥<%= book.total_price %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
